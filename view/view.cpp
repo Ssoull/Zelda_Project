@@ -9,5 +9,5 @@ View::View(QWidget *parent) : QMainWindow(parent)
 
 View::~View()
 {
-    std::cout << "View: Passed in destructor" << std::endl;
+    std::cout << "View: Passed in the destructor" << std::endl;
 }

@@ -27,12 +27,20 @@ CONFIG += c++11
 SOURCES += \
         controller/controller.cpp \
         main.cpp \
+        model/coordinates.cpp \
+        model/graphicobject.cpp \
         model/model.cpp \
+        model/size.cpp \
+        model/tile.cpp \
         view/view.cpp
 
 HEADERS += \
         controller/controller.h \
+        model/coordinates.h \
+        model/graphicobject.h \
         model/model.h \
+        model/size.h \
+        model/tile.h \
         view/view.h
 
 FORMS += \
