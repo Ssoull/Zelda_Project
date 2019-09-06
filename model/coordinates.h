@@ -9,7 +9,7 @@ private:
 
 public:
     Coordinates();
-    Coordinates(const int coordX, const int coordY);
+    Coordinates(const int coord_x, const int coord_y);
 
     void updateCoord(const Coordinates &new_coord);
     void updateCoord(const int new_coord_x, const int new_coord_y);

@@ -4,7 +4,7 @@ Coordinates::Coordinates() : m_coordX(0), m_coordY(0) {}
 
 
 
-Coordinates::Coordinates(const int coordX, const int coordY) : m_coordX(coordX), m_coordY(coordY) {}
+Coordinates::Coordinates(const int coord_x, const int coord_y) : m_coordX(coord_x), m_coordY(coord_y) {}
 
 
 
