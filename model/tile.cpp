@@ -22,6 +22,10 @@ void Tile::updateTileCoord(const Coordinates &new_tile_coord)
 
 Tile::~Tile()
 {
-    delete m_tileCoord;
+    if (m_tileCoord != nullptr)
+    {
+        delete m_tileCoord;
+    }
+
     std::cout << "Tile: Passed in the destructor" << std::endl;
 }

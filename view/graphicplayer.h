@@ -3,20 +3,17 @@
 
 #include <QGraphicsRectItem>
 
-#include "controller/controller.h"
 #include "model/player.h"
 
 class GraphicPlayer : public QGraphicsRectItem
 {
 private:    
-    Controller *m_controller;
-
     GraphicObject *m_playerData;
     Coordinates *m_lastPoint;
 public:
-    GraphicPlayer(Controller *controller, Player *player);
+    GraphicPlayer(Player *player);
 
-    void keyPressEvent(QKeyEvent *event);
+    void updateDisplay();
 
     ~GraphicPlayer();
 };

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QKeyEvent>
 
 #include "model/model.h"
 #include "controller/controller.h"
@@ -18,12 +19,16 @@ private:
 
     QGraphicsScene *m_scene;
 
-    GraphicPlayer *m_graphicalPlayer;
+    GraphicPlayer *m_graphicPlayer;
+
+    void checkMoveInput(QKeyEvent *event);
 
 public:
     explicit View(Model *model, Controller *controller, QWidget *parent = nullptr);
 
-    ~View();
+    void keyPressEvent(QKeyEvent *event) override;
+
+    ~View() override;
 };
 
 #endif // VIEW_H
