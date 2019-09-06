@@ -27,24 +27,29 @@ CONFIG += c++11
 SOURCES += \
         controller/controller.cpp \
         main.cpp \
+        model/character.cpp \
         model/coordinates.cpp \
         model/graphicobject.cpp \
         model/model.cpp \
+        model/player.cpp \
         model/size.cpp \
         model/tile.cpp \
+        view/graphicplayer.cpp \
         view/view.cpp
 
 HEADERS += \
         controller/controller.h \
+        model/character.h \
         model/coordinates.h \
         model/graphicobject.h \
         model/model.h \
+        model/player.h \
         model/size.h \
         model/tile.h \
+        view/graphicplayer.h \
         view/view.h
 
-FORMS += \
-        mainwindow.ui
+FORMS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

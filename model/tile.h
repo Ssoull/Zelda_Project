@@ -10,6 +10,8 @@ private:
     Coordinates *m_tileCoord;
 
 public:
+    const static int TILE_SIZE = 64;
+
     Tile(const Coordinates &tile_coord, const Size &tile_size);
 
     void updateTileCoord(const Coordinates &new_tile_coord);

@@ -20,3 +20,20 @@ void Coordinates::updateCoord(const int new_coord_x, const int new_coord_y)
 {
     this->updateCoord(Coordinates(new_coord_x, new_coord_y));
 }
+
+
+// GETTERS
+Coordinates Coordinates::getCoordinates() const
+{
+    return Coordinates(m_coordX, m_coordY);
+}
+
+int Coordinates::getX() const
+{
+    return m_coordX;
+}
+
+int Coordinates::getY() const
+{
+    return m_coordY;
+}
