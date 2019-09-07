@@ -1,7 +1,7 @@
 #include "player.h"
-#include "tile.h"
+#include "tilemap.h"
 
-Player::Player() : Character(Coordinates(Tile::TILE_SIZE * 5, Tile::TILE_SIZE * 5), Size(64))
+Player::Player() : Character(Coordinates(Tile::TILE_SIZE * (TileMap::TILE_MAP_WIDTH/2 - 1), Tile::TILE_SIZE * (TileMap::TILE_MAP_WIDTH/2) - 1), Size(64))
 {
 
 }

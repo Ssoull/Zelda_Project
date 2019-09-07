@@ -1,7 +1,6 @@
 #ifndef VIEW_H
 #define VIEW_H
 
-#include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QKeyEvent>
@@ -20,6 +19,8 @@ private:
     QGraphicsScene *m_scene;
 
     GraphicPlayer *m_graphicPlayer;
+
+    void initMap();
 
     void checkMoveInput(QKeyEvent *event);
 

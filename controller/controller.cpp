@@ -35,7 +35,7 @@ void Controller::manageInput(char input)
         break;
     }
 
-    m_model->m_player->updateCoord(newCoordX, newCoordY);
+    m_model->m_player->moveCharacter(Coordinates(newCoordX, newCoordY));
 }
 
 

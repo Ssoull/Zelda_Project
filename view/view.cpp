@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include "view.h"
 #include "model/tile.h"
@@ -9,6 +10,8 @@ View::View(Model *model, Controller *controller, QWidget *parent) :
 {
     this->setScene(m_scene);
 
+    this->initMap();
+
     m_scene->addItem(m_graphicPlayer);
 }
 
@@ -16,6 +19,37 @@ void View::keyPressEvent(QKeyEvent *event)
 {
     // Note: We can separate the inputs of actions and movements
     checkMoveInput(event);
+}
+
+void View::initMap()
+{
+    QColor color;
+    Tile *currentTile;
+    QGraphicsRectItem *tile;
+    for (unsigned i = 0; i < m_model->m_tileMap->getSizeTileMap(); ++i)
+    {
+        currentTile = m_model->m_tileMap->getTile(i);
+        tile = new QGraphicsRectItem(currentTile->getX(), currentTile->getY(), Tile::TILE_SIZE, Tile::TILE_SIZE);
+
+        switch (m_model->m_tileMap->getTile(i)->getTileType()) {
+        case TileType::Tree:
+            color = Qt::darkGreen;
+            break;
+
+        case TileType::Water:
+            color = Qt::cyan;
+            break;
+
+        case TileType::Herb:
+            color = Qt::green;
+            break;
+        }
+
+        tile->setBrush(QBrush(color));
+        tile->setPen(QPen(color));
+        m_scene->addItem(tile);
+    }
+
 }
 
 void View::checkMoveInput(QKeyEvent *event)

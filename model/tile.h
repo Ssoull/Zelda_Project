@@ -16,10 +16,13 @@ private:
 public:
     const static int TILE_SIZE = 64;
 
-    //    Tile(const TileType tileType, const Coordinates &tile_coord, const Size &tile_size);
     Tile(const TileType tile_type, const Coordinates &tile_coord);
 
+    void updateTileType(const TileType tile_type);
     void updateTileCoord(const Coordinates &new_tile_coord);
+
+    // GETTERS
+    TileType getTileType() const;
 
     ~Tile();
 };
