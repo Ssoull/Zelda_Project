@@ -3,8 +3,8 @@
 
 #include "character.h"
 namespace player_const {
-   static const unsigned int MOVE_LIMIT_MIN = 16;
-   static const unsigned int MOVE_LIMIT_MAX = 656;
+   static const int MOVE_LIMIT_MIN = -16;
+   static const int MOVE_LIMIT_MAX = 672;
 }
 class Player : public Character
 {
