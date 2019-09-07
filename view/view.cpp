@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <QDir>
 
 #include "view.h"
 #include "model/tile.h"
@@ -27,8 +28,10 @@ void View::initMap()
     QColor color;
     Tile *currentTile;
     QGraphicsRectItem *tile;
-    //m_model->m_tileMap->saveTileMap("chemin du fichier");
-    //m_model->m_tileMap->loadTileMap("chemin du fichier");
+
+
+    m_model->m_tileMap->loadTileMap(":/data/asset/map/01.data");
+
     for (unsigned i = 0; i < m_model->m_tileMap->getSizeTileMap(); ++i)
     {
         currentTile = m_model->m_tileMap->getTile(i);
@@ -58,7 +61,9 @@ void View::initMap()
 void View::checkMoveInput(QKeyEvent *event)
 {
     bool moveInput = true;
-
+  /*  uint8_t keyMap[4];
+    std::cerr << event->key() << " " << event-> std::endl;
+    std::cerr << std::boolalpha <<  event->isAutoRepeat() << std::endl;*/
     switch(event->key())
     {
     case Qt::Key_Z:

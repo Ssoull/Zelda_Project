@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/data">
+        <file>asset/map/01.data</file>
+        <file>asset/map/02.data</file>
+    </qresource>
+</RCC>

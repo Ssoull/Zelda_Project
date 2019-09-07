@@ -1,8 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <QFile>
 
 #include "tilemap.h"
+
 
 TileMap::TileMap() : m_tiles(TILE_MAP_WIDTH * TILE_MAP_WIDTH)
 {
@@ -70,15 +72,17 @@ unsigned TileMap::getSizeTileMap() const
 
 bool TileMap::loadTileMap(const std::string file)
 {
-   std::fstream inFile(file, std::ios::in);
-   if (!inFile.is_open()) {
+   // new file
+   QFile inFile(file.c_str());
+
+   // open in read only
+   if (!inFile.open(QIODevice::ReadOnly)) {
       std::cerr << "failed to open " << file << std::endl;
       return false;
    }
 
    // fill buffer with content of file
-   std::string str((std::istreambuf_iterator<char>(inFile)),
-                   std::istreambuf_iterator<char>());
+   std::string str(inFile.readAll().data());
 
    // remove all \n char
    std :: remove_if (str.begin(), str.end() , [](const char & c) {
