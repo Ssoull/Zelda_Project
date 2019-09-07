@@ -35,7 +35,10 @@ void Controller::manageInput(char input)
         break;
     }
 
-    m_model->m_player->moveCharacter(Coordinates(newCoordX, newCoordY));
+    if (m_model->m_tileMap->checkCollisionWithGraphicObject(GraphicObject(Coordinates(newCoordX, newCoordY), m_model->m_player->getSize())))
+    {
+        m_model->m_player->moveCharacter(Coordinates(newCoordX, newCoordY));
+    }
 }
 
 

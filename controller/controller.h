@@ -12,6 +12,8 @@ public:
     Controller(Model *model);
 
     void manageInput(char input);
+
+    void checkCollision();
 };
 
 #endif // CONTROLLER_H

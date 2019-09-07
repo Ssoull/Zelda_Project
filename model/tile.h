@@ -23,6 +23,7 @@ public:
 
     // GETTERS
     TileType getTileType() const;
+    bool isWalkable() const;
 
     ~Tile();
 };

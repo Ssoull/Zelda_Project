@@ -6,7 +6,8 @@
 class Player : public Character
 {
 public:
-    const static int MOVE_STEP = 10;
+    const static int PLAYER_WIDTH = 32;
+    const static int MOVE_STEP = 16;
 
     Player();
 

@@ -42,6 +42,11 @@ TileType Tile::getTileType() const
     return m_tileType;
 }
 
+bool Tile::isWalkable() const
+{
+    return walkable;
+}
+
 Tile::~Tile()
 {
     if (m_tileCoord != nullptr)
