@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 #include "view.h"
 #include "model/tile.h"
@@ -26,6 +27,8 @@ void View::initMap()
     QColor color;
     Tile *currentTile;
     QGraphicsRectItem *tile;
+    //m_model->m_tileMap->saveTileMap("chemin du fichier");
+    //m_model->m_tileMap->loadTileMap("chemin du fichier");
     for (unsigned i = 0; i < m_model->m_tileMap->getSizeTileMap(); ++i)
     {
         currentTile = m_model->m_tileMap->getTile(i);

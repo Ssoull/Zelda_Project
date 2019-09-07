@@ -2,6 +2,7 @@
 #define TILEMAP_H
 
 #include <vector>
+#include <string>
 
 #include "tile.h"
 #include "character.h"
@@ -19,6 +20,10 @@ public:
     bool checkCollisionWithGraphicObject(const GraphicObject &graphicObject) const;
 
     ~TileMap();
+
+    bool loadTileMap(const std::string file);
+    bool saveTileMap(const std::string file);
+
     // GETTERS
     Tile * getTile(const unsigned index) const;
     unsigned getSizeTileMap() const;

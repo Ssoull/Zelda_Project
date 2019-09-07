@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <algorithm>
 
 #include "tilemap.h"
 
@@ -64,5 +66,54 @@ Tile * TileMap::getTile(const unsigned index) const
 unsigned TileMap::getSizeTileMap() const
 {
     return unsigned(m_tiles.size());
+}
+
+bool TileMap::loadTileMap(const std::string file)
+{
+   std::fstream inFile(file, std::ios::in);
+   if (!inFile.is_open()) {
+      std::cerr << "failed to open " << file << std::endl;
+      return false;
+   }
+
+   // fill buffer with content of file
+   std::string str((std::istreambuf_iterator<char>(inFile)),
+                   std::istreambuf_iterator<char>());
+
+   // remove all \n char
+   std :: remove_if (str.begin(), str.end() , [](const char & c) {
+      return c == '\n' ;});
+
+   unsigned int y = 0;
+   for (unsigned int x = y ; x < m_tiles.size(); ++x)
+   {
+      if (x % TILE_MAP_WIDTH == 0 && x != 0)
+      {
+         ++y;
+      }
+      // -48 because ascii code for '0' is 48
+      m_tiles[x] = new Tile((TileType)(str[x]-48), Coordinates(x % TILE_MAP_WIDTH, y));
+   }
+   return true;
+}
+
+bool TileMap::saveTileMap(const std::string file)
+{
+   std::fstream outFile(file, std::ios::out);
+   if (!outFile.is_open()) {
+      std::cerr << "failed to open " << file << std::endl;
+      return false;
+   }
+   unsigned int i = 0;
+   for(auto const & tile: this->m_tiles){
+      i++;
+      outFile << tile->getTileType();
+      if (i % TILE_MAP_WIDTH == 0)
+      {
+         outFile << std::endl;
+      }
+   }
+   outFile.close();
+   return true;
 }
 
