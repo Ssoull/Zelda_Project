@@ -5,19 +5,19 @@
 class Coordinates
 {
 private:
-    int m_coordX, m_coordY;
+    unsigned int m_coordX, m_coordY;
 
 public:
     Coordinates();
-    Coordinates(const int coord_x, const int coord_y);
+    Coordinates(const unsigned int coord_x, const unsigned int coord_y);
 
     void updateCoord(const Coordinates &new_coord);
-    void updateCoord(const int new_coord_x, const int new_coord_y);
+    void updateCoord(const unsigned int new_coord_x, const unsigned int new_coord_y);
 
     // GETTERS
     Coordinates getCoordinates() const;
-    int getX() const;
-    int getY() const;
+    unsigned int getX() const;
+    unsigned int getY() const;
 };
 
 #endif // COORDINATES_H
