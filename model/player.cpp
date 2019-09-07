@@ -12,3 +12,13 @@ void Player::moveCharacter(const Coordinates &new_coord)
 {
     this->updateCoord(new_coord);
 }
+
+bool Player::playerCanMove()
+{
+   return (
+         this->getX() <= player_const::MOVE_LIMIT_MIN ||
+         this->getX() >= player_const::MOVE_LIMIT_MAX ||
+         this->getY() >= player_const::MOVE_LIMIT_MAX ||
+         this->getY() <= player_const::MOVE_LIMIT_MIN   );
+
+}

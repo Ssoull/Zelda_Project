@@ -2,10 +2,12 @@
 #define PLAYER_H
 
 #include "character.h"
+
 namespace player_const {
    static const int MOVE_LIMIT_MIN = 16;
    static const int MOVE_LIMIT_MAX = 656;
 }
+
 class Player : public Character
 {
 public:
@@ -16,6 +18,7 @@ public:
     Player();
 
     void moveCharacter(const Coordinates &new_coord) override;
+    bool playerCanMove();
 };
 
 #endif // PLAYER_H

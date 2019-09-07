@@ -9,25 +9,11 @@ Controller::Controller(Model *model) : m_model(model)
 
 void Controller::manageInput(char input)
 {
+   // this need to check if player was in limit with next map.
+    bool modelShouldUpdate = this->m_model->m_player->playerCanMove();
 
-    int newCoordX = m_model->m_player->getX();
-    int newCoordY = m_model->m_player->getY();
-
-   std::cerr << newCoordX << " " << newCoordX%60 <<" " << newCoordY << " " << newCoordY%60 <<    m_model->m_tileMap->getSizeTileMap() << std::endl;
-
-    // this need to check if player was in limit with next map.
-    // then if next tile was walkable.
-
-    bool modelShouldUpdate = false;
-    if(
-          newCoordX <= player_const::MOVE_LIMIT_MIN ||
-          newCoordX >= player_const::MOVE_LIMIT_MAX ||
-          newCoordY >= player_const::MOVE_LIMIT_MAX ||
-          newCoordY <= player_const::MOVE_LIMIT_MIN   )
-    {
-       std::cerr << "should update" << std::endl;
-       modelShouldUpdate = true;
-    }
+   int newCoordX = m_model->m_player->getX();
+   int newCoordY = m_model->m_player->getY();
 
     switch ( input )
     {
@@ -50,13 +36,15 @@ void Controller::manageInput(char input)
           std::cout << "Input not recognized" << std::endl;
           break;
    }
-    
+
+   // then if next tile was walkable.
    if (m_model->m_tileMap->checkCollisionWithGraphicObject(GraphicObject(Coordinates(newCoordX, newCoordY), m_model->m_player->getSize())))
    {
       m_model->m_player->moveCharacter(Coordinates(newCoordX, newCoordY));
    }
 
    if(modelShouldUpdate){
+      std::cerr << "Tile map should update." << std::endl;
       modelShouldUpdate = false;
    }
 
