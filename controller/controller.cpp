@@ -7,7 +7,7 @@ Controller::Controller(Model *model) : m_model(model)
 
 }
 
-void Controller::manageInput(char input)
+bool Controller::manageInput(char input)
 {
    // this need to check if player was in limit with next map.
     bool modelShouldUpdate = this->m_model->m_player->playerCanMove();
@@ -45,9 +45,10 @@ void Controller::manageInput(char input)
 
    if(modelShouldUpdate){
       std::cerr << "Tile map should update." << std::endl;
-      modelShouldUpdate = false;
+      this->m_model->m_tileMap->loadTileMap(":/data/asset/map/02.data");
    }
 
+   return modelShouldUpdate;
 }
 
 

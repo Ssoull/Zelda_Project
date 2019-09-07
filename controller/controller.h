@@ -11,7 +11,7 @@ private:
 public:
     Controller(Model *model);
 
-    void manageInput(char input);
+    bool manageInput(char input);
 
     void checkCollision();
 };

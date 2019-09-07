@@ -25,61 +25,33 @@ void View::keyPressEvent(QKeyEvent *event)
 
 void View::initMap()
 {
-    QColor color;
-    Tile *currentTile;
-    QGraphicsRectItem *tile;
-
-
     m_model->m_tileMap->loadTileMap(":/data/asset/map/01.data");
-
-    for (unsigned i = 0; i < m_model->m_tileMap->getSizeTileMap(); ++i)
-    {
-        currentTile = m_model->m_tileMap->getTile(i);
-        tile = new QGraphicsRectItem(currentTile->getX(), currentTile->getY(), Tile::TILE_SIZE, Tile::TILE_SIZE);
-
-        switch (m_model->m_tileMap->getTile(i)->getTileType()) {
-        case TileType::Tree:
-            color = Qt::darkGreen;
-            break;
-
-        case TileType::Water:
-            color = Qt::cyan;
-            break;
-
-        case TileType::Herb:
-            color = Qt::green;
-            break;
-        }
-
-        tile->setBrush(QBrush(color));
-        tile->setPen(QPen(color));
-        m_scene->addItem(tile);
-    }
-
+    this->updateTilemap();
 }
 
 void View::checkMoveInput(QKeyEvent *event)
 {
     bool moveInput = true;
+    bool tileMapShouldUpdate = false;
   /*  uint8_t keyMap[4];
     std::cerr << event->key() << " " << event-> std::endl;
     std::cerr << std::boolalpha <<  event->isAutoRepeat() << std::endl;*/
     switch(event->key())
     {
     case Qt::Key_Z:
-        m_controller->manageInput('z');
+        tileMapShouldUpdate = m_controller->manageInput('z');
         break;
 
     case Qt::Key_S:
-        m_controller->manageInput('s');
+        tileMapShouldUpdate = m_controller->manageInput('s');
         break;
 
     case Qt::Key_Q:
-        m_controller->manageInput('q');
+        tileMapShouldUpdate = m_controller->manageInput('q');
         break;
 
     case Qt::Key_D:
-        m_controller->manageInput('d');
+        tileMapShouldUpdate = m_controller->manageInput('d');
         break;
 
     default:
@@ -92,6 +64,10 @@ void View::checkMoveInput(QKeyEvent *event)
     if (moveInput)
     {
         m_graphicPlayer->updateDisplay();
+        if(tileMapShouldUpdate)
+        {
+           this->updateTilemap();
+        }
     }
 }
 
@@ -108,4 +84,34 @@ View::~View()
     }
 
     std::cout << "View: Passed in the destructor" << std::endl;
+}
+
+void View::updateTilemap()
+{
+   QColor color;
+   Tile *currentTile;
+   QGraphicsRectItem *tile;
+   for (unsigned i = 0; i < m_model->m_tileMap->getSizeTileMap(); ++i)
+   {
+      currentTile = m_model->m_tileMap->getTile(i);
+      tile = new QGraphicsRectItem(currentTile->getX(), currentTile->getY(), Tile::TILE_SIZE, Tile::TILE_SIZE);
+
+      switch (m_model->m_tileMap->getTile(i)->getTileType()) {
+         case TileType::Tree:
+            color = Qt::darkGreen;
+            break;
+
+         case TileType::Water:
+            color = Qt::cyan;
+            break;
+
+         case TileType::Herb:
+            color = Qt::green;
+            break;
+      }
+
+      tile->setBrush(QBrush(color));
+      tile->setPen(QPen(color));
+      m_scene->addItem(tile);
+   }
 }

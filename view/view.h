@@ -24,6 +24,8 @@ private:
 
     void checkMoveInput(QKeyEvent *event);
 
+    void updateTilemap();
+
 public:
     explicit View(Model *model, Controller *controller, QWidget *parent = nullptr);
 
