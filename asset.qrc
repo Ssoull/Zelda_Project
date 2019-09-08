@@ -9,5 +9,6 @@
         <file>asset/map/7.data</file>
         <file>asset/map/8.data</file>
         <file>asset/map/9.data</file>
+        <file>asset/images/link.png</file>
     </qresource>
 </RCC>

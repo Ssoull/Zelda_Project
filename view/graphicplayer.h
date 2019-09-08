@@ -2,10 +2,11 @@
 #define GRAPHICPLAYER_H
 
 #include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 
 #include "model/player.h"
 
-class GraphicPlayer : public QGraphicsRectItem
+class GraphicPlayer : public QGraphicsPixmapItem
 {
 private:    
     GraphicObject *m_playerData;

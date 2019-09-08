@@ -6,10 +6,10 @@
 
 GraphicPlayer::GraphicPlayer(Player *player) : m_playerData(player), m_lastPoint(new Coordinates(player->getX(), player->getY()))
 {
-    this->setRect(m_playerData->getX(), m_playerData->getY(), m_playerData->getWidth(), m_playerData->getHeight());
-    this->setPen(QPen(Qt::red));
-    this->setBrush(QBrush(Qt::red));
-
+    //this->setRect(m_playerData->getX(), m_playerData->getY(), m_playerData->getWidth(), m_playerData->getHeight());
+    //this->setPen(QPen(Qt::red));
+    //this->setBrush(QBrush(Qt::red));
+    setPixmap(QPixmap(":/data/asset/images/link.png"));
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
 }
@@ -17,12 +17,13 @@ GraphicPlayer::GraphicPlayer(Player *player) : m_playerData(player), m_lastPoint
 void GraphicPlayer::updateDisplay()
 {
    std::cerr << "updateDisplay(" << m_playerData->getX() << "," << m_playerData->getY() << ")"<<std::endl;
-   this->setRect(m_playerData->getX(), m_playerData->getY(), m_playerData->getWidth(), m_playerData->getHeight());
+   //this->setRect(m_playerData->getX(), m_playerData->getY(), m_playerData->getWidth(), m_playerData->getHeight());
+   this->setPos( this->m_playerData->getX(), this->m_playerData->getY() );
 }
 
 void GraphicPlayer::resetDisplay(){
    this->setZValue(1);
-   //this->setPos( this->m_playerData->getX(), this->m_playerData->getY() );
+   this->setPos( this->m_playerData->getX(), this->m_playerData->getY() );
   // m_lastPoint->updateCoord(m_playerData->getCoordinates());
   // this->setRect(m_playerData->getX(), m_playerData->getY(), m_playerData->getWidth(), m_playerData->getHeight());
 }
