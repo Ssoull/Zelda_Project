@@ -33,9 +33,7 @@ void View::checkMoveInput(QKeyEvent *event)
 {
     bool moveInput = true;
     bool tileMapShouldUpdate = false;
-  /*  uint8_t keyMap[4];
-    std::cerr << event->key() << " " << event-> std::endl;
-    std::cerr << std::boolalpha <<  event->isAutoRepeat() << std::endl;*/
+
     switch(event->key())
     {
     case Qt::Key_Z:
@@ -60,15 +58,19 @@ void View::checkMoveInput(QKeyEvent *event)
         break;
     }
 
+   if(tileMapShouldUpdate)
+   {
+      this->updateTilemap();
+      m_graphicPlayer->resetDisplay();
+   }
+   else
+   {
+      if ( moveInput )
+      {
+         m_graphicPlayer->updateDisplay();
+      }
+   }
     // Note: We avoid to update the qt item unnecessarily
-    if (moveInput)
-    {
-        m_graphicPlayer->updateDisplay();
-        if(tileMapShouldUpdate)
-        {
-           this->updateTilemap();
-        }
-    }
 }
 
 View::~View()
@@ -91,6 +93,7 @@ void View::updateTilemap()
    QColor color;
    Tile *currentTile;
    QGraphicsRectItem *tile;
+
    for (unsigned i = 0; i < m_model->m_tileMap->getSizeTileMap(); ++i)
    {
       currentTile = m_model->m_tileMap->getTile(i);

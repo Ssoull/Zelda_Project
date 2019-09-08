@@ -14,6 +14,8 @@ public:
     GraphicPlayer(Player *player);
 
     void updateDisplay();
+    void resetDisplay();
+    void updateDisplay(int x, int y);
 
     ~GraphicPlayer();
 };
