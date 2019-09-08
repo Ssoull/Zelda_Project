@@ -87,7 +87,7 @@ bool TileMap::loadTileMap(const std::string file)
    std::cerr << str << std::endl;
    // remove all \n char
    std :: remove_if (str.begin(), str.end() , [](const char & c) {
-      return c == '\n' ;});
+      return c == '\n' || c =='\r' ;});
 
    unsigned int y = 0;
    for (unsigned int x = y ; x < m_tiles.size(); ++x)
