@@ -2,5 +2,12 @@
     <qresource prefix="/data">
         <file>asset/map/1.data</file>
         <file>asset/map/2.data</file>
+        <file>asset/map/3.data</file>
+        <file>asset/map/4.data</file>
+        <file>asset/map/5.data</file>
+        <file>asset/map/6.data</file>
+        <file>asset/map/7.data</file>
+        <file>asset/map/8.data</file>
+        <file>asset/map/9.data</file>
     </qresource>
 </RCC>

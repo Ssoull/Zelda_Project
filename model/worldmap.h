@@ -6,7 +6,8 @@
 #include "tilemap.h"
 
 namespace worldmap_const {
-    static const int WORLD_MAP_WIDTH = 2;
+    static const int WORLD_MAP_WIDTH = 3;
+    static const int INDEX_START = 4;
 }
 
 class WorldMap

@@ -2,7 +2,7 @@
 
 #include "worldmap.h"
 
-WorldMap::WorldMap() : m_tileMaps(/*worldmap_const::WORLD_MAP_WIDTH * worldmap_const::WORLD_MAP_WIDTH*/ 2), m_currentIndexMap(0)
+WorldMap::WorldMap() : m_tileMaps(worldmap_const::WORLD_MAP_WIDTH * worldmap_const::WORLD_MAP_WIDTH), m_currentIndexMap(worldmap_const::INDEX_START)
 {
     for (unsigned int i = 0; i < m_tileMaps.size(); ++i)
     {
@@ -12,26 +12,32 @@ WorldMap::WorldMap() : m_tileMaps(/*worldmap_const::WORLD_MAP_WIDTH * worldmap_c
 
 void WorldMap::changeMap(const char direction)
 {
+    int newIndex = m_currentIndexMap;
     switch ( direction )
     {
     case 'z':
-        m_currentIndexMap -= worldmap_const::WORLD_MAP_WIDTH;
+        newIndex -= worldmap_const::WORLD_MAP_WIDTH;
         break;
     case 's':
-        m_currentIndexMap += worldmap_const::WORLD_MAP_WIDTH;
+        newIndex += worldmap_const::WORLD_MAP_WIDTH;
         break;
 
     case 'q':
-        --m_currentIndexMap;
+        --newIndex;
         break;
 
     case 'd':
-        ++m_currentIndexMap;
+        ++newIndex;
         break;
 
     default:
         std::cout << "Direction not recognized" << std::endl;
         break;
+    }
+
+    if (newIndex >= 0 && newIndex < worldmap_const::WORLD_MAP_WIDTH * worldmap_const::WORLD_MAP_WIDTH)
+    {
+        m_currentIndexMap = newIndex;
     }
 }
 
