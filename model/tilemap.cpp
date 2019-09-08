@@ -39,8 +39,8 @@ bool TileMap::checkCollisionWithGraphicObject(const GraphicObject &graphicObject
 bool TileMap::checkWalkableTile(const Coordinates &coordinates) const
 {
     Coordinates tileCoord(coordinates.getX() / Tile::TILE_SIZE, coordinates.getY() / Tile::TILE_SIZE);
-
-    return m_tiles[unsigned(TILE_MAP_WIDTH * tileCoord.getY() + tileCoord.getX())]->isWalkable();
+    auto * ptr = m_tiles[unsigned(TILE_MAP_WIDTH * tileCoord.getY() + tileCoord.getX())];
+    return (ptr ? ptr->isWalkable() : false );
 }
 
 TileMap::~TileMap()
@@ -60,6 +60,7 @@ TileMap::~TileMap()
 }
 
 // GETTERS
+// you need to test if nullptr ( if index not found risk of segfault)
 Tile * TileMap::getTile(const unsigned index) const
 {
     return m_tiles[index];
