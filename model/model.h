@@ -2,14 +2,14 @@
 #define MODEL_H
 
 #include "player.h"
-#include "tilemap.h"
+#include "worldmap.h"
 
 class Model
 {
 public:
     Player *m_player;
 
-    TileMap *m_tileMap;
+    WorldMap *m_worldMap;
 
     Model();
 

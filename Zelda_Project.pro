@@ -35,6 +35,7 @@ SOURCES += \
         model/size.cpp \
         model/tile.cpp \
         model/tilemap.cpp \
+        model/worldmap.cpp \
         view/graphicplayer.cpp \
         view/view.cpp
 
@@ -48,6 +49,7 @@ HEADERS += \
         model/size.h \
         model/tile.h \
         model/tilemap.h \
+        model/worldmap.h \
         view/graphicplayer.h \
         view/view.h
 

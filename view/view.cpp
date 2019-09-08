@@ -12,7 +12,7 @@ View::View(Model *model, Controller *controller, QWidget *parent) :
 {
     this->setScene(m_scene);
 
-    this->initMap();
+    this->updateTilemap();
 
     m_scene->addItem(m_graphicPlayer);
 }
@@ -21,12 +21,6 @@ void View::keyPressEvent(QKeyEvent *event)
 {
     // Note: We can separate the inputs of actions and movements
     checkMoveInput(event);
-}
-
-void View::initMap()
-{
-    m_model->m_tileMap->loadTileMap(":/data/asset/map/01.data");
-    this->updateTilemap();
 }
 
 void View::checkMoveInput(QKeyEvent *event)
@@ -58,20 +52,20 @@ void View::checkMoveInput(QKeyEvent *event)
         break;
     }
 
-   if(tileMapShouldUpdate)
-   {
-      this->updateTilemap();
-      m_graphicPlayer->resetDisplay();
-      m_graphicPlayer->updateDisplay();
-   }
-   else
-   {
-      if ( moveInput )
-      {
-         m_graphicPlayer->updateDisplay();
-      }
-   }
     // Note: We avoid to update the qt item unnecessarily
+    if(tileMapShouldUpdate)
+    {
+        this->updateTilemap();
+        m_graphicPlayer->resetDisplay();
+        m_graphicPlayer->updateDisplay();
+    }
+    else
+    {
+        if ( moveInput )
+        {
+            m_graphicPlayer->updateDisplay();
+        }
+    }
 }
 
 View::~View()
@@ -91,31 +85,43 @@ View::~View()
 
 void View::updateTilemap()
 {
-   QColor color;
-   Tile *currentTile;
-   QGraphicsRectItem *tile;
+    QColor color;
+    TileMap *currentTileMap = m_model->m_worldMap->getCurrentMap();
+    Tile *currentTile;
+    QGraphicsRectItem *tile;
 
-   for (unsigned i = 0; i < m_model->m_tileMap->getSizeTileMap(); ++i)
-   {
-      currentTile = m_model->m_tileMap->getTile(i);
-      tile = new QGraphicsRectItem(currentTile->getX(), currentTile->getY(), tile_const::TILE_SIZE, tile_const::TILE_SIZE);
+    for (unsigned i = 0; i <currentTileMap->getSizeTileMap(); ++i)
+    {
+        currentTile = currentTileMap->getTile(i);
+        if (currentTile != nullptr)
+        {
+            tile = new QGraphicsRectItem(currentTile->getX(), currentTile->getY(), tile_const::TILE_SIZE, tile_const::TILE_SIZE);
 
-      switch (m_model->m_tileMap->getTile(i)->getTileType()) {
-         case TileType::Tree:
-            color = Qt::darkGreen;
-            break;
+            switch (currentTileMap->getTile(i)->getTileType()) {
+            case TileType::Tree:
+                color = Qt::darkGreen;
+                break;
 
-         case TileType::Water:
-            color = Qt::cyan;
-            break;
+            case TileType::Water:
+                color = Qt::cyan;
+                break;
 
-         case TileType::Herb:
-            color = Qt::green;
-            break;
-      }
+            case TileType::Herb:
+                color = Qt::green;
+                break;
 
-      tile->setBrush(QBrush(color));
-      tile->setPen(QPen(color));
-      m_scene->addItem(tile);
-   }
+            case TileType::Wooden_Bridge:
+                color = QColor(139,69,19);
+                break;
+            }
+
+            tile->setBrush(QBrush(color));
+            tile->setPen(QPen(color));
+            m_scene->addItem(tile);
+        }
+        else
+        {
+            std::cerr << "Error current tile not found" << std::endl;
+        }
+    }
 }

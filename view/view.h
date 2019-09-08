@@ -20,8 +20,6 @@ private:
 
     GraphicPlayer *m_graphicPlayer;
 
-    void initMap();
-
     void checkMoveInput(QKeyEvent *event);
 
     void updateTilemap();

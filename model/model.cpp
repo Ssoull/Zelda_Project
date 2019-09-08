@@ -2,7 +2,7 @@
 
 #include "model.h"
 
-Model::Model() : m_player(new Player()), m_tileMap(new TileMap())
+Model::Model() : m_player(new Player()), m_worldMap(new WorldMap())
 {
 
 }
@@ -15,9 +15,9 @@ Model::~Model()
         delete m_player;
     }
 
-    if (m_tileMap != nullptr)
+    if (m_worldMap != nullptr)
     {
-        delete m_tileMap;
+        delete m_worldMap;
     }
 
     std::cout << "Model: Passed in the destructor" << std::endl;

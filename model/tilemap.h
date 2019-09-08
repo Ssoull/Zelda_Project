@@ -16,9 +16,10 @@ class TileMap
 private:
     std::vector<Tile *> m_tiles;
     bool checkWalkableTile(const Coordinates &coordinates) const;
-public:    const static int TILE_MAP_WIDTH = 11;
+public:
 
     TileMap();
+    TileMap(std::string file);
 
     bool checkCollisionWithGraphicObject(const GraphicObject &graphicObject) const;
 
