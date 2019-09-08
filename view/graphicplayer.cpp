@@ -16,22 +16,23 @@ GraphicPlayer::GraphicPlayer(Player *player) : m_playerData(player), m_lastPoint
 
 void GraphicPlayer::updateDisplay()
 {
-   int offsetOnX = m_playerData->getX() - m_lastPoint->getX();
-   int offsetOnY = m_playerData->getY() - m_lastPoint->getY();
+   int offsetOnX = m_playerData->getX();
+   int offsetOnY = m_playerData->getY();
 
    this->updateDisplay(offsetOnX,offsetOnY);
 }
 
 void GraphicPlayer::updateDisplay(int x, int y)
 {
-    m_lastPoint->updateCoord(m_playerData->getCoordinates());
-    this->setPos(this->x() + x, this->y() + y);
+   std::cerr << "updateDisplay(" << m_playerData->getX() << "," << m_playerData->getY() << ")"<<std::endl;
+   this->setRect(m_playerData->getX(), m_playerData->getY(), m_playerData->getWidth(), m_playerData->getHeight());
 }
 
 void GraphicPlayer::resetDisplay(){
    this->setZValue(1);
-   this->setPos(0 , 0);
-   updateDisplay(this->m_playerData->getX(),this->m_playerData->getY());
+   //this->setPos( this->m_playerData->getX(), this->m_playerData->getY() );
+  // m_lastPoint->updateCoord(m_playerData->getCoordinates());
+  // this->setRect(m_playerData->getX(), m_playerData->getY(), m_playerData->getWidth(), m_playerData->getHeight());
 }
 
 
