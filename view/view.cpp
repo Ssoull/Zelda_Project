@@ -62,6 +62,7 @@ void View::checkMoveInput(QKeyEvent *event)
    {
       this->updateTilemap();
       m_graphicPlayer->resetDisplay();
+      m_graphicPlayer->updateDisplay();
    }
    else
    {
