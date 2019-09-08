@@ -8,7 +8,7 @@
 
 View::View(Model *model, Controller *controller, QWidget *parent) :
     QGraphicsView(parent), m_model(model), m_controller(controller),
-    m_scene(new QGraphicsScene(0, 0, Tile::TILE_SIZE * 11, Tile::TILE_SIZE * 11)), m_graphicPlayer(new GraphicPlayer(m_model->m_player))
+    m_scene(new QGraphicsScene(0, 0, tile_const::TILE_SIZE * 11, tile_const::TILE_SIZE * 11)), m_graphicPlayer(new GraphicPlayer(m_model->m_player))
 {
     this->setScene(m_scene);
 
@@ -98,7 +98,7 @@ void View::updateTilemap()
    for (unsigned i = 0; i < m_model->m_tileMap->getSizeTileMap(); ++i)
    {
       currentTile = m_model->m_tileMap->getTile(i);
-      tile = new QGraphicsRectItem(currentTile->getX(), currentTile->getY(), Tile::TILE_SIZE, Tile::TILE_SIZE);
+      tile = new QGraphicsRectItem(currentTile->getX(), currentTile->getY(), tile_const::TILE_SIZE, tile_const::TILE_SIZE);
 
       switch (m_model->m_tileMap->getTile(i)->getTileType()) {
          case TileType::Tree:

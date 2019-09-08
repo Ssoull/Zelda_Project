@@ -5,6 +5,10 @@
 
 enum TileType {Tree, Herb, Water};
 
+namespace tile_const {
+   static const int TILE_SIZE = 64;
+}
+
 class Tile : public GraphicObject
 {
 private:
@@ -14,8 +18,6 @@ private:
     Coordinates *m_tileCoord;
 
 public:
-    const static int TILE_SIZE = 64;
-
     Tile(const TileType tile_type, const Coordinates &tile_coord);
 
     void updateTileType(const TileType tile_type);

@@ -7,13 +7,16 @@
 #include "tile.h"
 #include "character.h"
 
+namespace tilemap_const {
+    static const int TILE_MAP_WIDTH = 11;
+}
+
 class TileMap
 {
 private:
     std::vector<Tile *> m_tiles;
     bool checkWalkableTile(const Coordinates &coordinates) const;
-public:
-    const static int TILE_MAP_WIDTH = 11;
+public:    const static int TILE_MAP_WIDTH = 11;
 
     TileMap();
 

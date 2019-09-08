@@ -2,7 +2,7 @@
 #include <iostream>
 
 Tile::Tile(const TileType tile_type, const Coordinates &tile_coord) :
-    GraphicObject(Coordinates(tile_coord.getX() * TILE_SIZE, tile_coord.getY() * TILE_SIZE), Size(TILE_SIZE)),
+    GraphicObject(Coordinates(tile_coord.getX() * tile_const::TILE_SIZE, tile_coord.getY() * tile_const::TILE_SIZE), Size(tile_const::TILE_SIZE)),
     m_tileCoord(new Coordinates(tile_coord))
 {
     this->updateTileType(tile_type);

@@ -38,7 +38,7 @@ bool TileMap::checkCollisionWithGraphicObject(const GraphicObject &graphicObject
 
 bool TileMap::checkWalkableTile(const Coordinates &coordinates) const
 {
-    Coordinates tileCoord(coordinates.getX() / Tile::TILE_SIZE, coordinates.getY() / Tile::TILE_SIZE);
+    Coordinates tileCoord(coordinates.getX() / tile_const::TILE_SIZE, coordinates.getY() / tile_const::TILE_SIZE);
     auto * ptr = m_tiles[unsigned(TILE_MAP_WIDTH * tileCoord.getY() + tileCoord.getX())];
     return (ptr ? ptr->isWalkable() : false );
 }
