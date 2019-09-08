@@ -33,7 +33,7 @@ void Tile::updateTileCoord(const Coordinates &new_tile_coord)
     // We create a new Coordinates to avoid reference modification
     m_tileCoord->updateCoord(Coordinates(new_tile_coord));
 
-    this->updateCoord(Coordinates(m_tileCoord->getX() * this->getWidth(), m_tileCoord->getY() * this->getHeight()));
+    this->updateCoord(Coordinates(m_tileCoord->getX() * unsigned(this->getWidth()), m_tileCoord->getY() * unsigned(this->getHeight())));
 }
 
 // GETTERS

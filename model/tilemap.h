@@ -22,10 +22,10 @@ public:    const static int TILE_MAP_WIDTH = 11;
 
     bool checkCollisionWithGraphicObject(const GraphicObject &graphicObject) const;
 
-    ~TileMap();
-
     bool loadTileMap(const std::string file);
     bool saveTileMap(const std::string file);
+
+    ~TileMap();
 
     // GETTERS
     Tile * getTile(const unsigned index) const;

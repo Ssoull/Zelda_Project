@@ -15,7 +15,7 @@ public:
 
     void updateDisplay();
     void resetDisplay();
-    void updateDisplay(int x, int y);
+//    void updateDisplay(int x, int y);
 
     ~GraphicPlayer();
 };

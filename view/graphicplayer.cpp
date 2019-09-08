@@ -16,14 +16,6 @@ GraphicPlayer::GraphicPlayer(Player *player) : m_playerData(player), m_lastPoint
 
 void GraphicPlayer::updateDisplay()
 {
-   int offsetOnX = m_playerData->getX();
-   int offsetOnY = m_playerData->getY();
-
-   this->updateDisplay(offsetOnX,offsetOnY);
-}
-
-void GraphicPlayer::updateDisplay(int x, int y)
-{
    std::cerr << "updateDisplay(" << m_playerData->getX() << "," << m_playerData->getY() << ")"<<std::endl;
    this->setRect(m_playerData->getX(), m_playerData->getY(), m_playerData->getWidth(), m_playerData->getHeight());
 }
