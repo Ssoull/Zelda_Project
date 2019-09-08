@@ -18,18 +18,18 @@ bool Controller::manageInput(char input)
     switch ( input )
     {
        case 'z':
-          (!modelShouldUpdate ? newCoordY -= Player::MOVE_STEP : newCoordY = player_const::MOVE_LIMIT_MAX -16);
+          (!modelShouldUpdate ? newCoordY -= player_const::MOVE_STEP : newCoordY = player_const::MOVE_LIMIT_MAX -16);
           break;
        case 's':
-          (!modelShouldUpdate ? newCoordY += Player::MOVE_STEP : newCoordY = player_const::MOVE_LIMIT_MIN +16);
+          (!modelShouldUpdate ? newCoordY += player_const::MOVE_STEP : newCoordY = player_const::MOVE_LIMIT_MIN +16);
           break;
 
        case 'q':
-          (!modelShouldUpdate ? newCoordX -= Player::MOVE_STEP : newCoordX = player_const::MOVE_LIMIT_MAX -16);
+          (!modelShouldUpdate ? newCoordX -= player_const::MOVE_STEP : newCoordX = player_const::MOVE_LIMIT_MAX -16);
           break;
 
        case 'd':
-          (!modelShouldUpdate ? newCoordX += Player::MOVE_STEP : newCoordX = player_const::MOVE_LIMIT_MIN +16);
+          (!modelShouldUpdate ? newCoordX += player_const::MOVE_STEP : newCoordX = player_const::MOVE_LIMIT_MIN +16);
           break;
 
        default:

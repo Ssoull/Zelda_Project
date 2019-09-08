@@ -6,14 +6,13 @@
 namespace player_const {
    static const int MOVE_LIMIT_MIN = 16;
    static const int MOVE_LIMIT_MAX = 656;
+   static const int PLAYER_WIDTH = 32;
+   static const int MOVE_STEP = 16;
 }
 
 class Player : public Character
 {
 public:
-    const static int PLAYER_WIDTH = 32;
-    const static int MOVE_STEP = 16;
-
 
     Player();
 
