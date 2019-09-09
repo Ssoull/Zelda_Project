@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <QGraphicsPixmapItem>
+#include <QtAlgorithms>
 #include <QDir>
 
 #include "view.h"
@@ -8,11 +10,13 @@
 
 View::View(Model *model, Controller *controller, QWidget *parent) :
     QGraphicsView(parent), m_model(model), m_controller(controller),
-    m_scene(new QGraphicsScene(0, 0, tile_const::TILE_SIZE * 11, tile_const::TILE_SIZE * 11)), m_graphicPlayer(new GraphicPlayer(m_model->m_player))
+    m_scene(new QGraphicsScene(0, 0, tile_const::TILE_SIZE * 11, tile_const::TILE_SIZE * 11)),
+    m_graphicPlayer(new GraphicPlayer(m_model->m_player)),
+    m_graphicMap(new GraphicTileMap(m_model->m_worldMap))
 {
     this->setScene(m_scene);
 
-    this->updateTilemap();
+    m_graphicMap->updateTileMap(m_scene);
 
     m_scene->addItem(m_graphicPlayer);
 }
@@ -55,9 +59,10 @@ void View::checkMoveInput(QKeyEvent *event)
     // Note: We avoid to update the qt item unnecessarily
     if(tileMapShouldUpdate)
     {
-        this->updateTilemap();
+        m_graphicMap->clearTileMap();
+        m_graphicMap->updateTileMap(m_scene);
+
         m_graphicPlayer->resetDisplay();
-        m_graphicPlayer->updateDisplay();
     }
     else
     {
@@ -83,45 +88,3 @@ View::~View()
     std::cout << "View: Passed in the destructor" << std::endl;
 }
 
-void View::updateTilemap()
-{
-    QColor color;
-    TileMap *currentTileMap = m_model->m_worldMap->getCurrentMap();
-    Tile *currentTile;
-    QGraphicsRectItem *tile;
-
-    for (unsigned i = 0; i <currentTileMap->getSizeTileMap(); ++i)
-    {
-        currentTile = currentTileMap->getTile(i);
-        if (currentTile != nullptr)
-        {
-            tile = new QGraphicsRectItem(currentTile->getX(), currentTile->getY(), tile_const::TILE_SIZE, tile_const::TILE_SIZE);
-
-            switch (currentTileMap->getTile(i)->getTileType()) {
-            case TileType::Tree:
-                color = Qt::darkGreen;
-                break;
-
-            case TileType::Water:
-                color = Qt::cyan;
-                break;
-
-            case TileType::Herb:
-                color = Qt::green;
-                break;
-
-            case TileType::Wooden_Bridge:
-                color = QColor(139,69,19);
-                break;
-            }
-
-            tile->setBrush(QBrush(color));
-            tile->setPen(QPen(color));
-            m_scene->addItem(tile);
-        }
-        else
-        {
-            std::cerr << "Error current tile not found" << std::endl;
-        }
-    }
-}

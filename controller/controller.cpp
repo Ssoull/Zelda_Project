@@ -47,9 +47,7 @@ bool Controller::manageInput(char input)
     if(modelShouldUpdate){
         // thier check if we can move next tile
         // then invert character position.
-        std::cerr << "Tile map should update." << std::endl;
         m_model->m_worldMap->changeMap(input);
-        std::cerr << "test" << newCoordX << " " << newCoordY << std::endl;
     }
 
     // then if next tile was walkable.

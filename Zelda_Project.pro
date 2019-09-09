@@ -37,6 +37,7 @@ SOURCES += \
         model/tilemap.cpp \
         model/worldmap.cpp \
         view/graphicplayer.cpp \
+        view/graphictilemap.cpp \
         view/view.cpp
 
 HEADERS += \
@@ -50,6 +51,7 @@ HEADERS += \
         model/tile.h \
         model/tilemap.h \
         model/worldmap.h \
+        view/graphicmap.h \
         view/graphicplayer.h \
         view/view.h
 

@@ -3,7 +3,7 @@
 
 #include "graphicobject.h"
 
-enum TileType {Tree, Herb, Water, Wooden_Bridge};
+enum TileType {Tree, Grass, Water, Wooden_Bridge};
 
 namespace tile_const {
    static const int TILE_SIZE = 64;

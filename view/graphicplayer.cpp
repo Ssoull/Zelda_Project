@@ -4,55 +4,72 @@
 
 #include "graphicplayer.h"
 
-GraphicPlayer::GraphicPlayer(Player *player) : m_playerData(player), m_lastPoint(new Coordinates(player->getX(), player->getY()))
+GraphicPlayer::GraphicPlayer(Player *player) : m_playerData(player), m_lastOrientation(Orientation::NoDirection), m_qPixmaps(4)
 {
-    //this->setRect(m_playerData->getX(), m_playerData->getY(), m_playerData->getWidth(), m_playerData->getHeight());
-    //this->setPen(QPen(Qt::red));
-    //this->setBrush(QBrush(Qt::red));
-    setPixmap(QPixmap(":/data/asset/images/link_left.png"));
-    this->setPos( this->m_playerData->getX(), this->m_playerData->getY() );
-    this->setFlag(QGraphicsItem::ItemIsFocusable);
-    this->setFocus();
+    initQPixmap();
+
+    updateDisplay();
+}
+
+void GraphicPlayer::initQPixmap()
+{
+    std::string name[] = {"front", "back", "left", "right"};
+
+    for (unsigned int i = 0; i < m_qPixmaps.size(); ++i)
+    {
+        m_qPixmaps[i] = new QPixmap(QString::fromStdString(":/data/asset/images/link_" + name[i] + ".png"));
+    }
+
 }
 
 void GraphicPlayer::updateDisplay()
 {
+    this->setPos(m_playerData->getX(), m_playerData->getY());
 
-   std::cerr << "updateDisplay(" << m_playerData->getX() << "," << m_playerData->getY() << ")"<<std::endl;
-   std::cout << m_playerData->orientation<<std::endl;
-   //this->setRect(m_playerData->getX(), m_playerData->getY(), m_playerData->getWidth(), m_playerData->getHeight());
-   this->setPos( this->m_playerData->getX(), this->m_playerData->getY() );
-   switch(m_playerData->orientation){
-   case Orientation::Front:
-       setPixmap(QPixmap(":/data/asset/images/link_front.png"));
-       break;
-   case Orientation::Back:
-       setPixmap(QPixmap(":/data/asset/images/link_back.png"));
-       break;
-   case Orientation::Left:
-       setPixmap(QPixmap(":/data/asset/images/link_left.png"));
-       break;
-   case Orientation::Right:
-       setPixmap(QPixmap(":/data/asset/images/link_right.png"));
-   default:
-       break;
-   }
+    if (m_lastOrientation != m_playerData->getOrientation())
+    {
+        switch(m_playerData->getOrientation()){
+        case Orientation::Front:
+            this->setPixmap(*m_qPixmaps[Orientation::Front]);
+            break;
+
+        case Orientation::Back:
+            this->setPixmap(*m_qPixmaps[Orientation::Back]);
+            break;
+
+        case Orientation::Left:
+            this->setPixmap(*m_qPixmaps[Orientation::Left]);
+            break;
+
+        case Orientation::Right:
+            this->setPixmap(*m_qPixmaps[Orientation::Right]);
+            break;
+
+        case Orientation::NoDirection:
+            break;
+        }
+
+        m_lastOrientation = m_playerData->getOrientation();
+    }
 }
 
 void GraphicPlayer::resetDisplay(){
-   this->setZValue(1);
-   this->setPos( this->m_playerData->getX(), this->m_playerData->getY() );
-  // m_lastPoint->updateCoord(m_playerData->getCoordinates());
-  // this->setRect(m_playerData->getX(), m_playerData->getY(), m_playerData->getWidth(), m_playerData->getHeight());
+    this->setZValue(1);
+    this->setPos(m_playerData->getX(), m_playerData->getY());
 }
-
 
 GraphicPlayer::~GraphicPlayer()
 {
-    if (m_lastPoint != nullptr)
+    for (unsigned i = 0; i < m_qPixmaps.size(); ++i)
     {
-        delete m_lastPoint;
+        if (m_qPixmaps[i] != nullptr)
+        {
+            delete m_qPixmaps[i];
+        }
     }
 
-    std::cout << "GraphicPlayer: Passed in the destructor" << std::endl;
+    m_qPixmaps.clear();
+    m_qPixmaps.shrink_to_fit();
+
+    std::cout << "Graphic Player: Passed in the destructor" << std::endl;
 }

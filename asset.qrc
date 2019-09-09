@@ -9,10 +9,14 @@
         <file>asset/map/7.data</file>
         <file>asset/map/8.data</file>
         <file>asset/map/9.data</file>
-        <file>asset/images/link.png</file>
         <file>asset/images/link_front.png</file>
         <file>asset/images/link_back.png</file>
         <file>asset/images/link_left.png</file>
         <file>asset/images/link_right.png</file>
+        <file>asset/images/water.png</file>
+        <file>asset/images/grass.png</file>
+        <file>asset/images/bridge.png</file>
+        <file>asset/images/tree.png</file>
+        <file>asset/images/truncate_tree.png</file>
     </qresource>
 </RCC>

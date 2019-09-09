@@ -21,7 +21,7 @@ void Tile::updateTileType(const TileType tile_type)
             walkable = false;
             break;
 
-        case TileType::Herb:
+        case TileType::Grass:
         case TileType::Wooden_Bridge:
             walkable = true;
             break;

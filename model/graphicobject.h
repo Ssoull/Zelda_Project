@@ -3,14 +3,23 @@
 
 #include "coordinates.h"
 #include "size.h"
-enum Orientation{Front, Back, Left, Right};
+
+enum Orientation{Front, Back, Left, Right, NoDirection};
+
 class GraphicObject : public Coordinates, public Size
 {
+private:
+    Orientation m_orientation;
+
 public:
-    Orientation orientation;
     GraphicObject(const Size &size);
     GraphicObject(const Coordinates &coordinates, const Size &size);
-    void setOrientation(Orientation direction);
+
+    // SETTERS
+    void setOrientation(const Orientation &direction);
+
+    // GETTERS
+    Orientation getOrientation() const;
 };
 
 #endif // GRAPHICOBJECT_H

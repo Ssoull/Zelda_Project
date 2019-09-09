@@ -45,7 +45,6 @@ bool TileMap::loadTileMap(const std::string file)
     // fill buffer with content of file
     std::string str(inFile.readAll().data());
 
-    std::cerr << str << std::endl;
     // remove all \n char
     std :: remove_if (str.begin(), str.end() , [](const char & c) {
         return c == '\n' || c =='\r' ;});

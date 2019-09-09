@@ -8,6 +8,7 @@
 #include "model/model.h"
 #include "controller/controller.h"
 #include "graphicplayer.h"
+#include "graphicmap.h"
 
 class View : public QGraphicsView
 {
@@ -19,10 +20,9 @@ private:
     QGraphicsScene *m_scene;
 
     GraphicPlayer *m_graphicPlayer;
+    GraphicTileMap *m_graphicMap;
 
     void checkMoveInput(QKeyEvent *event);
-
-    void updateTilemap();
 
 public:
     explicit View(Model *model, Controller *controller, QWidget *parent = nullptr);
